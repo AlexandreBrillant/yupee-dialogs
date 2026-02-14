@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script>
+            const $$ = {
+            };
+        </script>
+        <script src="../src/yupee-dialogs2.js"></script>
+        <script>
+            const init = () => {
+                for ( let dialogType in $$.dialogs ) {
+                    const btn = document.querySelector( "#" + dialogType );
+                    btn && btn.addEventListener( 
+                        "click",
+                        ( event ) => {
+                            const action = ( event.target.id );
+                            $$.dialogs[ action ]( event.target.textContent ).then(
+                                ( res ) => {
+                                    if ( typeof res != "undefined" )
+                                        document.querySelector( "#res" ).innerHTML = res;
+                                } );
+                        } );
+                }
+            };
+            document.addEventListener( "DOMContentLoaded", init )
+        </script>
+    </head>
+    <body>
+
+        <h1>Hello world</h1>
+
+        <p>
+            This is a simple page
+        </p>
+
+        <button id="alert">Alert</button>
+        <button id="confirm">Confirm</button>
+        <button id="prompt">Prompt</button>
+
+        <hr>
+
+        Result = 
+
+        <span id="res">
+
+        </span>
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "yupee-dialogs",
+  "version": "1.0.0",
+  "description": "This is simple inner dialogs for the yuppe framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandreBrillant/yupee-dialogs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "njs",
+  "bugs": {
+    "url": "https://github.com/AlexandreBrillant/yupee-dialogs/issues"
+  },
+  "homepage": "https://github.com/AlexandreBrillant/yupee-dialogs#readme"
+}
