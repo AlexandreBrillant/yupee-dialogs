@@ -1,2 +1,2 @@
 # yupee-dialogs
-This is simple inner dialog for the yuppe framework
+This is simple inner dialogs for the yuppe framework
