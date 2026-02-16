@@ -61,6 +61,8 @@ Your inner dialog adds a **yupee_dialog** class for the dialog panel. Thus you m
 
 ![Inner1](images/inner1.png)
 
+Here an example for the blue background
+
 ```html
 <style type="text/css">
     div.yupee_dialog * {
@@ -71,6 +73,8 @@ Your inner dialog adds a **yupee_dialog** class for the dialog panel. Thus you m
     }
 </style>
 ```
+
+Here an example for default electron background
 
 ![Inner2](images/inner2.png)
 
