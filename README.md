@@ -32,7 +32,7 @@ This is the default dialogs for Yupee. You just have to put the yupee-dialogs1.j
 <html>
     <head>
         <script src='yupee.js'></script>
-        <script src='yupee-dialogs1.js'></script>
+        <script src='yupee-native-dialogs.js'></script>
     </head>
     ...
 </html>
@@ -49,7 +49,7 @@ This is very useful for electron usage.
 <html>
     <head>
         <script src='yupee.js'></script>
-        <script src='yupee-dialogs2.js'></script>
+        <script src='yupee-inner-dialogs.js'></script>
     </head>
     ...
 </html>
