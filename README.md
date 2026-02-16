@@ -72,3 +72,4 @@ Your inner dialog adds a **yupee_dialog** class for the dialog panel. Thus you m
 </style>
 ```
 
+(c) Alexandre Brillant
