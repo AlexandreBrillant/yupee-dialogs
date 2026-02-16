@@ -1,6 +1,6 @@
 # yupee-dialogs
 
-This is a simple dialogs framework for the Yupee library. It can be used without the Yupee Library too.
+This is a simple dialogs framework for the Yupee library. It can be used without the Yupee Library too (look at the test folder).
 
 This framework can be used for electron usage.
 
@@ -25,7 +25,7 @@ You have two dialogs types :
 
 ## Native dialogs
 
-This is the default dialogs for Yupee. You just have to put the yupee-dialogs1.js after the yupee.js library.
+This is the default dialogs for Yupee. You just have to put the yupee-native-dialogs.js after the yupee.js library.
 
 ```html
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ This is the default dialogs for Yupee. You just have to put the yupee-dialogs1.j
 
 ## Inner dialogs
 
-This is inner dialogs for Yupee. You just have to put the yupee-dialogs2.js after the yupee.js library.
+This is inner dialogs for Yupee. You just have to put the yupee-inner-dialogs.js after the yupee.js library.
 
 This is very useful for electron usage.
 
@@ -65,34 +65,34 @@ Here an example for the blue background
 
 ```html
 <style type="text/css">
-    div.yupee_dialog * {
-        background-color:blue;
-        color:white;
-    }
-    div.yupee_dialog button {
-    }
+	div.yupee_dialog * {
+		background-color:blue;
+		color:white;
+	}
+	div.yupee_dialog button {
+	}
 </style>
 ```
 
-Here an example for default electron background
-
 ![Inner2](images/inner2.png)
+
+Here an example for default electron background
 
 ```html
 <script type="text/css">
-div.yupee_dialog, div.yupee_dialog div {
-    border-radius: 10px;    
-}
+	div.yupee_dialog, div.yupee_dialog div {
+    		border-radius: 10px;    
+	}
 
-div.yupee_dialog,div.yupee_dialog * {
-    background-color:#2c2c2c !important;    
-    color:white;
-}
+	div.yupee_dialog,div.yupee_dialog * {
+		 background-color:#2c2c2c !important;    
+		color:white;
+	}
 
-div.yupee_dialog button, div.yupee_dialog input {
-    background:#373737 !important;
-    color:white;
-}
+	div.yupee_dialog button, div.yupee_dialog input {
+		background:#373737 !important;
+		color:white;
+	}
 </script>
 ```
 
