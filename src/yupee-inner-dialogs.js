@@ -9,9 +9,11 @@
 
     class Dialog {
         #background;
+        #defaultClass;
 
-        constructor() {
+        constructor( defaultClass = "yupee_dialog" ) {
             !this.#background && ( this.#background = document.createElement( "DIV" ) );
+            this.#defaultClass = defaultClass;
             this.#applyCSS( this.#background, {
                 position: "fixed",
                 top:0,
@@ -24,12 +26,16 @@
                 display: "none",
             } );
         }
-        
+
         #getBackground() {
             while ( this.#background.childElementCount ) {
                 this.#background.remove( 0 );
             }
             return this.#background;
+        }
+
+        select( cssSelector ) {
+            return this.#background.querySelector( cssSelector );
         }
 
         #applyCSS( container, css ) {
@@ -62,6 +68,7 @@
             const p = new Promise(
                 (resolver) => {
                     const container = document.createElement( "DIV" );
+                    container.classList.add( this.#defaultClass );
                     container.style.display = "flex";
                     container.style.flexDirection = "column";            
                     this.#applyCSS( container, {
@@ -147,16 +154,20 @@
             } else
                 return null;
         }
-        async show( htmlContent ) {
+        async show( htmlContent, defaultValue ) {
             htmlContent += "<div><input type='text' width='100%' style='margin:10px;display:block'></div>";
-            return super.show( htmlContent, ["OK", "Cancel"] );
+            const promess = super.show( htmlContent, ["OK", "Cancel"] );
+            if ( defaultValue ) {
+                this.select( "INPUT" ).value = defaultValue;
+            }
+            return promess;
         }        
     }
 
     $$.dialogs = {
         alert: async ( msg ) => (new DialogAlert()).show( msg ),
         confirm: async ( msg ) => (new DialogConfirm()).show( msg ),
-        prompt: async ( msg ) => (new DialogPrompt()).show( msg )
+        prompt: async ( msg, defaultValue ) => (new DialogPrompt()).show( msg, defaultValue )
     };
 
 } )( $$ );

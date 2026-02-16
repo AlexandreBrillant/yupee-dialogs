@@ -1,6 +1,8 @@
 <!--
-* Default dialog using the native dialogs for the Yupee framework.
-* Just add this library after the yupee library for usage
+* Default dialog using custom inner dialogs for the Yupee framework.
+* Just add this library after the yupee library for usage.
+*
+* We update the background and the color using the yupee_dialog class.
 *
 * @author Alexandre Brillant (https://github.com/AlexandreBrillant/)
 * @version 1.0
@@ -8,11 +10,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style type="text/css">
+            div.yupee_dialog * {
+                background-color:blue;
+                color:white;
+            }
+        </style>
+
         <script>
             const $$ = {
             };
         </script>
-        <script src="../src/yupee-dialogs1.js"></script>
+        <script src="../src/yupee-inner-dialogs.js"></script>
         <script>
             const init = () => {
                 for ( let dialogType in $$.dialogs ) {
@@ -21,7 +30,7 @@
                         "click",
                         ( event ) => {
                             const action = ( event.target.id );
-                            $$.dialogs[ action ]( event.target.textContent ).then(
+                            $$.dialogs[ action ]( event.target.textContent, "default value" ).then(
                                 ( res ) => {
                                     if ( typeof res != "undefined" )
                                         document.querySelector( "#res" ).innerHTML = res;

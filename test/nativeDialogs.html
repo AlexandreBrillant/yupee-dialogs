@@ -1,5 +1,5 @@
 <!--
-* Default dialog using custom inner dialogs for the Yupee framework.
+* Default dialog using the native dialogs for the Yupee framework.
 * Just add this library after the yupee library for usage
 *
 * @author Alexandre Brillant (https://github.com/AlexandreBrillant/)
@@ -12,7 +12,7 @@
             const $$ = {
             };
         </script>
-        <script src="../src/yupee-dialogs2.js"></script>
+        <script src="../src/yupee-native-dialogs.js"></script>
         <script>
             const init = () => {
                 for ( let dialogType in $$.dialogs ) {
@@ -21,7 +21,7 @@
                         "click",
                         ( event ) => {
                             const action = ( event.target.id );
-                            $$.dialogs[ action ]( event.target.textContent ).then(
+                            $$.dialogs[ action ]( event.target.textContent, "default value" ).then(
                                 ( res ) => {
                                     if ( typeof res != "undefined" )
                                         document.querySelector( "#res" ).innerHTML = res;

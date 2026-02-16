@@ -1,7 +1,10 @@
 # yupee-dialogs
-This is simple inner dialogs for the yupee framework
 
-You have 3 dialogs usage :
+This is a simple dialogs framework for the Yupee library. It can be used without the Yupee Library too.
+
+This framework can be used for electron usage.
+
+You have 3 default dialogs usage :
 
 ```javascript
 $$.dialogs.alert
@@ -13,7 +16,7 @@ Each dialog is asynchronous for general usage like electron usage. Here a very s
 
 ```javascript
 async myPrompt() {
-    const news = await $$.dialogs.prompt( "What's new ?" );
+    const news = await $$.dialogs.prompt( "What's new ?", "default value..." );
     console.log( news );
 }
 ```
@@ -51,3 +54,21 @@ This is very useful for electron usage.
     ...
 </html>
 ```
+
+# Updating the look and feel
+
+Your inner dialog adds a **yupee_dialog** class for the dialog panel. Thus you may update the look like in this sample for having blue dialog. You may also update the look for any fields like button/input...
+
+![Inner1](images/inner1.png)
+
+```html
+<style type="text/css">
+    div.yupee_dialog * {
+        background-color:blue;
+        color:white;
+    }
+    div.yupee_dialog button {
+    }
+</style>
+```
+

@@ -10,7 +10,7 @@
     $$.dialogs = {
         alert: async ( msg ) => new Promise( (resolve, reject) => window.alert( msg ) && resolve( true ) ),
         confirm: async ( msg ) => new Promise( ( resolve,reject ) => resolve( window.confirm( msg ) ) ),
-        prompt: async ( msg ) => new Promise( ( resolve, reject ) => resolve( window.prompt( msg ) ) )
+        prompt: async ( msg, defaultValue ) => new Promise( ( resolve, reject ) => resolve( window.prompt( msg, defaultValue ) ) )
     };
 
 } )( $$ );
