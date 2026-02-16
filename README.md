@@ -72,4 +72,22 @@ Your inner dialog adds a **yupee_dialog** class for the dialog panel. Thus you m
 </style>
 ```
 
+![Inner2](images/inner2.png)
+
+```html
+div.yupee_dialog, div.yupee_dialog div {
+    border-radius: 10px;    
+}
+
+div.yupee_dialog,div.yupee_dialog * {
+    background-color:#2c2c2c !important;    
+    color:white;
+}
+
+div.yupee_dialog button, div.yupee_dialog input {
+    background:#373737 !important;
+    color:white;
+}
+```
+
 (c) Alexandre Brillant
