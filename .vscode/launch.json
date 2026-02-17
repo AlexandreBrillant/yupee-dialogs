@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open simple1.html",
-            "file": "/home/alex/travail/soft/git/yupee-dialogs/test/innerDialogs.html",
+            "file": "/home/alex/travail/soft/git/yupee-dialogs/test/simple.html",
             "runtimeExecutable": "/usr/bin/chromium-browser",
             "userDataDir": "${workspaceFolder}/.vscode/chrome-profile"
         }

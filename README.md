@@ -79,7 +79,7 @@ Here an example for the blue background
 Here an example for default electron background
 
 ```html
-<script type="text/css">
+<style type="text/css">
 	div.yupee_dialog, div.yupee_dialog div {
     		border-radius: 10px;    
 	}
@@ -93,7 +93,53 @@ Here an example for default electron background
 		background:#373737 !important;
 		color:white;
 	}
-</script>
+</style>
 ```
 
-(c) Alexandre Brillant
+# Calling inner dialogs without yupee
+
+In this example, we use the yupee-dialogs without usage of the yupee library. By default, all the dialogs
+are stored inside the window.dialogs object.
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            div.yupee_dialog, div.yupee_dialog div {
+                    border-radius: 10px;    
+            }
+
+            div.yupee_dialog,div.yupee_dialog * {
+                background-color:#2c2c2c !important;    
+                color:white;
+            }
+
+            div.yupee_dialog button, div.yupee_dialog input {
+                background:#373737 !important;
+                color:white;
+            }
+        </style>
+        <script src="../src/yupee-inner-dialogs.js"></script>
+        <script>
+            const init = async () => {
+                console.log( await dialogs.confirm( "Are you sure ?" ) );
+                console.log( await dialogs.prompt( "Your value ?", "default value" ) );
+                console.log( await dialogs.alert( "Hello World" ) );
+            };
+            document.addEventListener( "DOMContentLoaded", init )
+        </script>
+    </head>
+    <body>
+
+        <h1>Hello world</h1>
+
+        <p>
+            This is a simple page with 3 inner dialogs
+        </p>
+
+    </body>
+</html>
+```
+
+(c) 2026 Alexandre Brillant

@@ -1,4 +1,15 @@
 /*
+ * yupee-inner-dialogs.js
+ * Copyright 2026 Alexandre Brillant
+ *
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/*
 * It uses here inner dialogs for the Yupee framework
 * Just add this library after the yupee library for usage
 *
@@ -6,6 +17,8 @@
 * @version 1.0
 */
 ( ( $$ ) => {
+
+    console.log( typeof $$ );
 
     class Dialog {
         #background;
@@ -164,10 +177,11 @@
         }        
     }
 
-    $$.dialogs = {
-        alert: async ( msg ) => (new DialogAlert()).show( msg ),
-        confirm: async ( msg ) => (new DialogConfirm()).show( msg ),
-        prompt: async ( msg, defaultValue ) => (new DialogPrompt()).show( msg, defaultValue )
-    };
+    $$.dialogs = $$.dialogs || {};
+    $$.dialogs.alert = async ( msg ) => (new DialogAlert()).show( msg );
+    $$.dialogs.confirm = async ( msg ) => (new DialogConfirm()).show( msg );
+    $$.dialogs.prompt = async ( msg, defaultValue ) => (new DialogPrompt()).show( msg, defaultValue );
 
-} )( $$ );
+} )( typeof $$ == "undefined" ? window : $$ );
+
+

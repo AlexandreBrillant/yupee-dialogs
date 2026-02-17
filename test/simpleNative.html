@@ -1,0 +1,23 @@
+<!--
+* Simple usage for native dialogs
+* @author Alexandre Brillant (https://github.com/AlexandreBrillant/)
+* @version 1.0
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../src/yupee-native-dialogs.js"></script>
+        <script>
+            const init = async () => {
+                console.log( await dialogs.confirm( "Are you sure ?" ) );
+                console.log( await dialogs.prompt( "Your value ?", "default value" ) );
+                console.log( await dialogs.alert( "Hello World" ) );
+            };
+            document.addEventListener( "DOMContentLoaded", init )
+        </script>
+    </head>
+    <body>
+        <h1>Hello world</h1>
+        <p>This is a simple page with 3 native dialogs</p>
+    </body>
+</html>
