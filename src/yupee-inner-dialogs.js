@@ -18,8 +18,6 @@
 */
 ( ( $$ ) => {
 
-    console.log( typeof $$ );
-
     class Dialog {
         #background;
         #defaultClass;
