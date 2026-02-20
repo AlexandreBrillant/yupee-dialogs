@@ -1,21 +1,23 @@
 {
   "name": "yupee-dialogs",
   "version": "1.0.0",
-  "description": "This is simple inner dialogs for the yuppe framework",
-  "main": "index.js",
+  "description": "This is simple inner dialogs for the yuppe framework, it can be used for electron",
+  "main": "./src/yupee-inner-dialogs.js",
+  "author": {
+    "name" : "Alexandre Brillant",
+    "url": "https://www.alexandrebrillant.com"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexandreBrillant/yupee-dialogs.git"
+    "url": "https://github.com/AlexandreBrillant/yupee-dialogs.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "njs",
+  "keywords": [ "inner dialog", "electron dialog", "electron", "dialog framework", "javascript dialog", "alert dialog", "input dialog", "prompt dialog", "confirm dialog"],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AlexandreBrillant/yupee-dialogs/issues"
   },
-  "homepage": "https://github.com/AlexandreBrillant/yupee-dialogs#readme"
+  "homepage": "https://github.com/AlexandreBrillant/yupee-dialogs"
 }
