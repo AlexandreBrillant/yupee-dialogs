@@ -8,7 +8,11 @@
     "url": "https://www.alexandrebrillant.com"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:clean": "rm -rf dist && mkdir dist",
+    "build:copy": "cp src/yupee-inner-dialogs.js dist",
+    "build:minify": "terser src/yupee-inner-dialogs.js -o dist/yupee-inner-dialogs.min.js",
+    "build": "npm run build:clean && npm run build:copy && npm run build:minify",
+    "prebuild": "node --check src/yupee-inner-dialogs.js"
   },
   "repository": {
     "type": "git",
