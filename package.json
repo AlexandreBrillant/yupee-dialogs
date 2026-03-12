@@ -9,9 +9,10 @@
   },
   "scripts": {
     "build:clean": "rm -rf dist && mkdir dist",
-    "build:copy": "cp src/yupee-inner-dialogs.js dist",
-    "build:minify": "terser src/yupee-inner-dialogs.js -o dist/yupee-inner-dialogs.min.js",
-    "build": "npm run build:clean && npm run build:copy && npm run build:minify",
+    "build:copy": "cp src/yupee-inner-dialogs.js dist && cp src/yupee-native-dialogs.js dist",
+    "build:esm": "node tools/preprocessor.js -i src/yupee-inner-dialogs.mjs -o dist/yupee-inner-dialogs.mjs",
+    "build:minify": "terser src/yupee-inner-dialogs.js -o dist/yupee-inner-dialogs.min.js && terser dist/yupee-inner-dialogs.mjs -o dist/yupee-inner-dialogs.min.mjs",
+    "build": "npm run build:clean && npm run build:copy && npm run build:esm && npm run build:minify",
     "prebuild": "node --check src/yupee-inner-dialogs.js"
   },
   "repository": {
