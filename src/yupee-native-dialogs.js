@@ -36,5 +36,6 @@ SOFTWARE.
     $$.dialogs.alert = async ( msg ) => new Promise( (resolve, reject) => window.alert( msg ) && resolve( true ) )
     $$.dialogs.confirm = async ( msg ) => new Promise( ( resolve,reject ) => resolve( window.confirm( msg ) ) ),
     $$.dialogs.prompt = async ( msg, defaultValue ) => new Promise( ( resolve, reject ) => resolve( window.prompt( msg, defaultValue ) ) )
+    $$.dialogs.panel = async ( container, config ) => new Promise( ( resolve, reject ) => reject( false ) );
 
 } )( typeof $$ == "undefined" ? window : $$ );

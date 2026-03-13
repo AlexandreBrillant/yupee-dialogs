@@ -1,0 +1,61 @@
+<!--
+* Simple usage for inner dialogs
+* @author Alexandre Brillant (https://github.com/AlexandreBrillant/)
+* @version 1.0
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            div.yupee_dialog, div.yupee_dialog div {
+                    border-radius: 10px;    
+            }
+
+            div.yupee_dialog,div.yupee_dialog * {
+                background-color:#2c2c2c !important;    
+                color:white;
+            }
+
+            div.yupee_dialog button, div.yupee_dialog input {
+                background:#373737 !important;
+                color:white;
+            }
+        </style>
+        <script src="../src/yupee-inner-dialogs.js"></script>
+        <script>
+
+            const init = async () => {
+                const panel = document.createElement( "DIV" );
+                panel.innerHTML = "<div><label>First Name</label><input type='text' name='firstname'></div>";
+                panel.innerHTML += "<div><label>Last Name</label><input type='text' name='lastname'></div>";
+
+                const button = await dialogs.panel( panel );
+                if ( button == "OK" ) {
+                    alert( "Hello " + panel.querySelector( "[name=firstname]").value + "," +
+                        panel.querySelector( "[name=lastname]").value );
+                }
+
+                // We update the default CSS config of the main container
+                const button2 = await dialogs.panel( panel.cloneNode(true), { actions: [ "Yes", "No" ], minWidth:"300px", minHeight:"300px", top:"300px" } );
+                if ( button2 == "Yes" ) {
+                    alert( "OK Mister" );
+                } else
+                if ( button2 == "No" ) {
+                    alert( "Oh Really ?" );
+                }
+
+            };
+            document.addEventListener( "DOMContentLoaded", init )
+        </script>
+    </head>
+    <body>
+
+        <h1>My panel</h1>
+
+        <p>
+            A simple panel with multiple field dialog
+        </p>
+
+    </body>
+</html>
+

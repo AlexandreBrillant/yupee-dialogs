@@ -1,6 +1,6 @@
 # yupee-dialogs
 
-This is a simple dialogs framework for the Yupee library. It can be used without the Yupee Library too (look at the test folder).
+This is a simple dialogs framework for the [Yupee library](https://github.com/AlexandreBrillant/yupee). It can be used without the Yupee Library too (look at the test folder).
 
 This framework can be used for electron usage.
 
@@ -10,6 +10,7 @@ You have 3 default dialogs usage :
 $$.dialogs.alert
 $$.dialogs.prompt
 $$.dialogs.confirm
+$$.dialogs.panel
 ```
 
 Each dialog is asynchronous for general usage like electron usage. Here a very simple case for a prompt value.
@@ -140,6 +141,38 @@ are stored inside the window.dialogs object.
 
     </body>
 </html>
+```
+
+# Using a panel
+
+A panel is a free container element, like a "DIV". You can put anything inside like a complex form. You can choose the default "Ok", "Cancel" actions or set your own actions. You can also control the way the container is displayed with your own CSS properties.
+
+In this example, we have a panel with two fields "firstname" and "lastname". In the first dialog, we use the default actions "Ok" and "Cancel". In the second dialog, we update the size and the actions.
+
+![Inner3](images/inner3.png)
+
+```javascript
+
+const panel = document.createElement( "DIV" );
+panel.innerHTML = "<div><label>First Name</label><input type='text' name='firstname'></div>";
+panel.innerHTML += "<div><label>Last Name</label><input type='text' name='lastname'></div>";
+
+
+const button = await dialogs.panel( panel );
+if ( button == "OK" ) {
+    alert( "Hello " + panel.querySelector( "[name=firstname]").value + "," +
+        panel.querySelector( "[name=lastname]").value );
+}
+
+// We update the default CSS config of the main container
+const button2 = await dialogs.panel( panel.cloneNode(true), { actions: [ "Yes", "No" ], minWidth:"300px", minHeight:"300px", top:"300px" } );
+if ( button2 == "Yes" ) {
+    alert( "OK Mister" );
+} else
+if ( button2 == "No" ) {
+    alert( "Oh Really ?" );
+}
+
 ```
 
 (c) 2026 Alexandre Brillant

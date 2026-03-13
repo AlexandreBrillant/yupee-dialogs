@@ -38,6 +38,9 @@ SOFTWARE.
 */
 ( ( $$ ) => {
 
+    const OK = "OK";
+    const CANCEL = "Cancel";
+
     class Dialog {
         #background;
         #defaultClass;
@@ -95,7 +98,14 @@ SOFTWARE.
             resolver( this.getReturnValue( container, btn ) );
         }
 
-        async show( htmlContent, actions = ["OK"] ) {
+        async show( dialogContent, actions = [ OK ] ) {
+            let config = {};
+            if ( !Array.isArray( actions ) ) {
+                config = actions;
+                if ( actions.actions && Array.isArray( actions.actions ) ) {
+                    actions = actions.actions;
+                }
+            }
             const p = new Promise(
                 (resolver) => {
                     const container = document.createElement( "DIV" );
@@ -106,22 +116,30 @@ SOFTWARE.
                             position: "fixed",
                             top: "20%",
                             left: "50%",
-                            minWidth : "200px",
+                            minWidth : ( config.width || 200 ) + "px",
+                            minHeight : ( config.height ? `${config.height}px` : "auto"),
                             transform: "translate(-50%, -50%)",
                             backgroundColor: "white",
-                            zIndex: "1001"
+                            zIndex: "1001",
+                            ...config
                         } 
                     );
 
-                    const panel = document.createElement( "DIV" );
+                    let panel;
+
+                    if ( dialogContent instanceof Node ) {
+                        panel = dialogContent;
+                    } else {
+                        panel = document.createElement( "DIV" );
+                        panel.innerHTML = dialogContent;
+                    }
+
                     this.#applyCSS( panel,
                         {
                             padding:"10px",
                             paddingLeft:"20px",
                             paddingRight:"20px"
                         } );
-
-                    panel.innerHTML = htmlContent;
 
                     container.appendChild( panel );
 
@@ -160,10 +178,10 @@ SOFTWARE.
     }
     class DialogConfirm extends Dialog {
         getReturnValue( container, btn ) {
-            return btn.textContent == "OK";
+            return btn.textContent == OK;
         }
-        async show( htmlContent ) {
-            return super.show( htmlContent, ["OK", "Cancel"] );
+        async show( dialogContent ) {
+            return super.show( dialogContent, [ OK, CANCEL ] );
         }
     }
 
@@ -178,16 +196,15 @@ SOFTWARE.
                     that.setVisible( false );
             } } );
         }
-     
         getReturnValue( container, btn ) {
             if ( btn.textContent == "OK" ) {
                 return container.querySelector( "INPUT" ).value;
             } else
                 return null;
         }
-        async show( htmlContent, defaultValue ) {
-            htmlContent += "<div><input type='text' width='100%' style='margin:10px;display:block'></div>";
-            const promess = super.show( htmlContent, ["OK", "Cancel"] );
+        async show( dialogContent, defaultValue ) {
+            dialogContent += "<div><input type='text' width='100%' style='margin:10px;display:block'></div>";
+            const promess = super.show( dialogContent, [ OK, CANCEL ] );
             if ( defaultValue ) {
                 this.select( "INPUT" ).value = defaultValue;
             }
@@ -195,10 +212,18 @@ SOFTWARE.
         }        
     }
 
+    class DialogPanel extends Dialog {
+        async show( dialogContent, config ) {
+            const promess = super.show( dialogContent, config || [ OK, CANCEL ] );
+            return promess;
+        }
+    }
+
     $$.dialogs = $$.dialogs || {};
     $$.dialogs.alert = async ( msg ) => (new DialogAlert()).show( msg );
     $$.dialogs.confirm = async ( msg ) => (new DialogConfirm()).show( msg );
     $$.dialogs.prompt = async ( msg, defaultValue ) => (new DialogPrompt()).show( msg, defaultValue );
+    $$.dialogs.panel = async ( container, config ) => new DialogPanel().show( container, config );
 
 } )( typeof $$ == "undefined" ? window : $$ );
 

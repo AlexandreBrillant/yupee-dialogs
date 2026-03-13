@@ -1,8 +1,8 @@
 {
   "name": "yupee-dialogs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This is simple inner dialogs for the yuppe framework, it can be used for electron",
-  "main": "./src/yupee-inner-dialogs.js",
+  "main": "./dist/yupee-inner-dialogs.min.js",
   "author": {
     "name" : "Alexandre Brillant",
     "url": "https://www.alexandrebrillant.com"
