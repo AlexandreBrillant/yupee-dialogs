@@ -28,8 +28,14 @@
                 const panel = document.createElement( "DIV" );
                 panel.innerHTML = "<div><label>First Name</label><input type='text' name='firstname'></div>";
                 panel.innerHTML += "<div><label>Last Name</label><input type='text' name='lastname'></div>";
+                
+                // It this sample, we change the default focus to a field part only
+                const config = {
+                    actions: ["OK", "Cancel it" ],
+                    focus : "[name=firstname]"
+                }
 
-                const button = await dialogs.panel( panel );
+                const button = await dialogs.panel( panel, config );
                 if ( button == "OK" ) {
                     alert( "Hello " + panel.querySelector( "[name=firstname]").value + "," +
                         panel.querySelector( "[name=lastname]").value );

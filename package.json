@@ -13,7 +13,9 @@
     "build:esm": "node tools/preprocessor.js -i src/yupee-inner-dialogs.mjs -o dist/yupee-inner-dialogs.mjs",
     "build:minify": "terser src/yupee-inner-dialogs.js -o dist/yupee-inner-dialogs.min.js && terser dist/yupee-inner-dialogs.mjs -o dist/yupee-inner-dialogs.min.mjs",
     "build": "npm run build:clean && npm run build:copy && npm run build:esm && npm run build:minify",
-    "prebuild": "node --check src/yupee-inner-dialogs.js"
+    "prebuild": "node --check src/yupee-inner-dialogs.js",
+    "test:panel" : "chromium test/panel.html",
+    "test" : "chromium test/innerDialogs.html && chromium test/panel.html && chromium test/simple.html && chromium test/simpleNative.html && chromium test/nativeDialogs.html"
   },
   "repository": {
     "type": "git",

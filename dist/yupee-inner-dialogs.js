@@ -94,12 +94,15 @@ SOFTWARE.
 
         async show( dialogContent, actions = [ OK ] ) {
             let config = {};
+            let defaultFocus;
             if ( !Array.isArray( actions ) ) {
                 config = actions;
                 if ( actions.actions && Array.isArray( actions.actions ) ) {
                     actions = actions.actions;
                 }
+                defaultFocus = config.focus;
             }
+
             const p = new Promise(
                 (resolver) => {
                     const container = document.createElement( "DIV" );
@@ -161,7 +164,13 @@ SOFTWARE.
 
                     this.#getBackground().appendChild( container );
                     this.setVisible( true );
-                    this.defaultFocus( container, resolver );
+                    if ( defaultFocus ) {
+                        if ( typeof defaultFocus == "string" ) {
+                            const node = container.querySelector( defaultFocus );
+                            node && node.focus();
+                        }
+                    } else
+                        this.defaultFocus( container, resolver );
             } );
             return p;
         }
