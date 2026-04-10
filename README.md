@@ -189,4 +189,10 @@ if ( button2 == "No" ) {
 
 ```
 
+# Want a specific usage ?
+
+Contact me on my professional web site : 
+
+https://www.alexandrebrillant.com
+
 (c) 2026 Alexandre Brillant
