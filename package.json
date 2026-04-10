@@ -1,12 +1,13 @@
 {
   "name": "yupee-dialogs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "This is simple inner dialogs for the yuppe framework, it can be used for electron",
   "main": "./dist/yupee-inner-dialogs.min.js",
   "author": {
     "name" : "Alexandre Brillant",
     "url": "https://www.alexandrebrillant.com"
   },
+  "type": "module",
   "scripts": {
     "build:clean": "rm -rf dist && mkdir dist",
     "build:copy": "cp src/yupee-inner-dialogs.js dist && cp src/yupee-native-dialogs.js dist",
@@ -15,6 +16,7 @@
     "build": "npm run build:clean && npm run build:copy && npm run build:esm && npm run build:minify",
     "prebuild": "node --check src/yupee-inner-dialogs.js",
     "test:panel" : "chromium test/panel.html",
+    "test:list" : "chromium test/simpleList.html",
     "test" : "chromium test/innerDialogs.html && chromium test/panel.html && chromium test/simple.html && chromium test/simpleNative.html && chromium test/nativeDialogs.html"
   },
   "repository": {

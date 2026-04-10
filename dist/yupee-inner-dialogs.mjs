@@ -7,6 +7,8 @@ import { $$ } from "./yupee.mjs";
 /*
  * yupee-inner-dialogs.js
  * Copyright 2026 Alexandre Brillant
+ * https://github.com/AlexandreBrillant
+ * https://www.alexandrebrillant.com
  */
 
 /* 
@@ -195,8 +197,15 @@ SOFTWARE.
     }
 
     class DialogPrompt extends Dialog {
+
+        #listMode = false;
+
         defaultFocus( container, resolver ) {
-            const input = container.querySelector( "INPUT" );
+            let input = null;
+            if ( this.#listMode )
+                input = container.querySelector( "SELECT" );
+            else
+                input = container.querySelector( "INPUT" );
             input.focus();
             const that = this;
             input.addEventListener('keydown', (e) => {
@@ -207,14 +216,32 @@ SOFTWARE.
         }
         getReturnValue( container, btn ) {
             if ( btn.textContent == "OK" ) {
+                if ( this.#listMode ) {
+                    const select = container.querySelector( "SELECT" );
+                    const { selectedIndex } = select;
+                    if ( selectedIndex < 0 )
+                        return null;
+                    return select.options[ selectedIndex ].value;
+                }
                 return container.querySelector( "INPUT" ).value;
             } else
                 return null;
         }
         async show( dialogContent, defaultValue ) {
-            dialogContent += "<div><input type='text' width='100%' style='margin:10px;display:block'></div>";
+            this.#listMode = defaultValue && Array.isArray( defaultValue );
+            dialogContent += "<div>";
+
+            if ( this.#listMode ) {
+                dialogContent += "<select>";
+                dialogContent += defaultValue.map( ( item ) => "<option value='" + item + "'>" + item + "</option>" ).join("");
+                dialogContent += "</select>";
+            } else
+                dialogContent += "<input type='text' width='100%' style='margin:10px;display:block'>";
+
+            dialogContent += "</div>";
+
             const promess = super.show( dialogContent, [ OK, CANCEL ] );
-            if ( defaultValue ) {
+            if ( defaultValue && !this.#listMode ) {
                 this.select( "INPUT" ).value = defaultValue;
             }
             return promess;

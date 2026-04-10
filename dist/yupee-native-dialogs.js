@@ -1,7 +1,9 @@
 /*
  * yupee-native-dialogs.js
  * Copyright 2026 Alexandre Brillant
- */
+ * https://github.com/AlexandreBrillant
+ * https://www.alexandrebrillant.com
+*/
 
 /* 
 Permission is hereby granted, free of charge, to any person obtaining a copy

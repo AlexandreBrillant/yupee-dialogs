@@ -143,6 +143,20 @@ are stored inside the window.dialogs object.
 </html>
 ```
 
+# List case
+
+Rather than prompting a default string value, it is possible to choose an array of string. Thus a select field
+will replace an input field automatically.
+
+![Inner4](images/inner4.png)
+
+In this example, we display a color choosed by the user. Note that the default value stored the selected value. The
+first one (here red) is the default one.
+
+```javascript
+    console.log( await dialogs.prompt( "Your favorite color ?", [ "red", "yellow", "green", "blue" ] ) );
+```
+
 # Using a panel
 
 A panel is a free container element, like a "DIV". You can put anything inside like a complex form. You can choose the default "Ok", "Cancel" actions or set your own actions. You can also control the way the container is displayed with your own CSS properties.
