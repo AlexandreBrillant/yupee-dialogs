@@ -76,10 +76,13 @@ SOFTWARE.
         
         setVisible( visible ) {
             this.#background.style.display = visible ? "block" : "none";
-            if ( visible )
+            if ( visible ) {
                 document.body.appendChild( this.#background );
-            else
-                document.body.removeChild( this.#background );
+            }
+            else {
+                if ( document.body.contains( this.#background ) )
+                    document.body.removeChild( this.#background );
+            }
         }
 
         getReturnValue( container, btn ) {
