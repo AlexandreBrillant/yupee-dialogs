@@ -148,9 +148,12 @@ SOFTWARE.
 
                     container.appendChild( panel );
 
+                    const buttonByAction = {};
+
                     const buttons = document.createElement( "DIV" );
                     for ( const action of actions ) {
                         const btn = document.createElement( "BUTTON" );
+                        buttonByAction[ action ] = btn;
                         btn.textContent = action;
                         const that = this;
                         btn.addEventListener( "click", () => {
@@ -169,6 +172,20 @@ SOFTWARE.
                         } );
 
                     container.appendChild( buttons );
+
+                    container.addEventListener( "keydown", ( event ) => {
+                        if ( event.key == "Escape" ) {
+                            if ( CANCEL in buttonByAction )
+                                buttonByAction[ CANCEL ].click();
+                            else {
+                                this.setVisible( false );
+                            }
+                        } else
+                        if ( event.key == "Enter" ) {
+                            if ( OK in buttonByAction )
+                                buttonByAction[ OK ].click();
+                        }
+                    } );
 
                     this.#getBackground().appendChild( container );
                     this.setVisible( true );
